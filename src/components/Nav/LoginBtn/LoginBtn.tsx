@@ -1,23 +1,13 @@
-import { NavigateFunction } from 'react-router-dom';
 import * as S from './LoginBtn.style';
 
 type LoginBtnProps = {
   userToken: string | null;
   setUserToken: React.Dispatch<React.SetStateAction<string | null>>;
-  navigate: NavigateFunction;
 };
 
-export default function LoginBtn({
-  userToken,
-  setUserToken,
-  navigate,
-}: LoginBtnProps) {
-  const goToLogin = () => {
-    navigate('/login');
-  };
-
+export default function LoginBtn({ userToken, setUserToken }: LoginBtnProps) {
   return (
-    <S.LoginButton onClick={goToLogin}>
+    <S.LoginButton>
       {userToken ? (
         <>
           <S.LogoutIcon
