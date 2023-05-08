@@ -6,20 +6,41 @@ export const MainContainer = styled.div`
 
 export const TitleBox = styled.div`
   display: flex;
-  height: 150px;
+  width: 100vw;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 15px;
+  margin-bottom: 50px;
+  height: auto;
+  color: #f0f0f0;
+  text-shadow: 3px 4px 7px rgb(81, 104, 105);
 `;
 
-export const SubTitle = styled.h3`
-  /* border: black 1px solid; */
-  font-size: 150%;
+export const TitleImg = styled.img`
+  object-fit: cover;
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+  width: 100%;
+  height: 350px;
+  opacity: 70%;
 `;
 
 export const Title = styled.h1`
-  /* border: black 1px solid; */
   font-weight: 900;
   font-size: 300%;
+  position: absolute;
+  top: 150px;
 `;
+
+export const SubTitle = styled.h3`
+  font-size: 150%;
+  position: absolute;
+`;
+
+export const DescriptionBox = styled.div`
+  margin-top: 20px;
+  position: absolute;
+  bottom: 520px;
+`;
+
+export const Description = styled.h4``;
