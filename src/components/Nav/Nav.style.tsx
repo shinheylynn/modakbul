@@ -8,7 +8,7 @@ export const NavContainer = styled.div`
 `;
 
 export const LogoBox = styled.div`
-  background-color: #767933;
+  background-color: rgb(30, 86, 98);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@ export const Logo = styled.img`
 `;
 
 export const CategoryBox = styled.div`
-  background-color: #a8693f;
+  background-color: #a56520;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,17 +35,26 @@ export const CategoryBox = styled.div`
 
 export const Categories = styled.div`
   font-weight: 500;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 1px rgb(239, 176, 110);
   &:hover {
     cursor: pointer;
     transition: 0.3s;
-    color: #f0f0f0;
+    color: #713a16;
   }
 `;
 
-export const LoginBox = styled.div`
-  background-color: #a8693f;
+export const ProfileBox = styled.div`
+  background-color: #a56520;
+  width: 15vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15vw;
+`;
+
+export const LoginBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
 `;

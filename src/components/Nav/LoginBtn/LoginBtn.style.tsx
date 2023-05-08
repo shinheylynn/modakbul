@@ -5,15 +5,16 @@ export const LoginButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #767933;
+  background-color: rgb(30, 86, 98);
   border: none;
   border-radius: 30px;
   width: 150px;
   height: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   &:hover {
     cursor: pointer;
-    transition: 0.3s;
-    background-color: #7e846e;
+    transition: 0.2s;
+    background-color: rgb(107, 160, 165);
   }
 `;
 
