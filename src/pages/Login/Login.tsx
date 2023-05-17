@@ -3,17 +3,13 @@ import GoogleLoginButton from './GoogleLoginButton';
 import * as S from './Login.style';
 
 export default function Login() {
-  const clientId =
-    '398058854903-52lqo1sibg8atk38d839inqpecmklc54.apps.googleusercontent.com' ||
-    '';
-
-  //REACT_APP_GOOGLE_CLIENT_ID=398058854903-52lqo1sibg8atk38d839inqpecmklc54.apps.googleusercontent.com
+  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
   return (
     <S.AllWrap>
       <S.TitleWrap>
         <S.TitleImg src="images/bonfire.png" />
-        <S.Title>모닥불</S.Title>
+        <S.Title>모 닥 불</S.Title>
       </S.TitleWrap>
       <S.InputWrap>
         <S.IdInput placeholder="아이디를 입력해 주세요" />
