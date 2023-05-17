@@ -1,0 +1,13 @@
+{
+  "userInfo": [
+    {
+      "id": 1,
+      "nickName": "캠퍼1",
+      "profilepicture": "images/bonfire.png",
+      "introduce": "안녕하세요",
+      "myPosting": [],
+      "like": [],
+      "scrape": []
+    }
+  ]
+}
