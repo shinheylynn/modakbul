@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CATEGORIES } from './CategoryList';
 import LoginBtn from './LoginBtn/LoginBtn';
+import { CATEGORIES } from './CategoryList';
 import PostingBtn from './PostingBtn/PostingBtn';
 import * as S from './Nav.style';
 

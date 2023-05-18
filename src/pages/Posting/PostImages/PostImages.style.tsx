@@ -39,6 +39,7 @@ export const InformAddImg = styled.label`
 
 export const ImageContainer = styled.div`
   margin: 5px;
+  border: 1px solid #cccccc;
   position: relative;
   width: 150px;
   height: 150px;
@@ -51,11 +52,11 @@ export const ImageContainer = styled.div`
   }
 
   button {
-    border: 1px solid red;
+    border: 1px solid #cccccc;
+    color: gray;
     position: absolute;
     top: -8px;
     right: -8px;
-    border: none;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -63,11 +64,15 @@ export const ImageContainer = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    :hover {
+      color: black;
+    }
   }
 `;
 
 export const AddButtonBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px;
@@ -91,4 +96,9 @@ export const AddButton = styled.label`
     font-size: 15px;
     color: white;
   }
+`;
+
+export const imgInfo = styled.div`
+  font-size: small;
+  padding-top: 20px;
 `;
