@@ -1,0 +1,25 @@
+{
+  "feedDetail": {
+    "feed": [
+      {
+        "userName": "42기이종혁",
+        "userProfileImage": "https://lh3.googleusercontent.com/a/AGNmyxaBWTC6K5WDPFL9aS2_bXhKB5IZJNVi3t5BIH5B=s96-c",
+        "feedTitle": "두번쨰 피드 제목",
+        "feedContent": "두번쨰 피드입니다.",
+        "feedCreateTime": "2023-05-15T10:47:13.000Z",
+        "feedLikeCount": "0",
+        "feedImages": "[{\"imageId\": 1, \"imageUrl\": \"https://modakbul.s3.ap-northeast-2.amazonaws.com/1684147633279a514bd4c-980c-413c-bff1-995e675f4e43IMG_1862.HEIC\"}, {\"imageId\": 2, \"imageUrl\": \"https://modakbul.s3.ap-northeast-2.amazonaws.com/16841476333054fcc07d9-05e3-4341-aea3-315056b5cf24IMG_1863.HEIC\"}]"
+      }
+    ],
+    "comment": [
+      {
+        "commentId": 1,
+        "commentContent": "멋져요!!!",
+        "commentCreateTime": "2023-05-16T06:04:28.000Z",
+        "commentUserId": 1,
+        "commentUserName": "박준우",
+        "commentUserProfileImage": "junwoo_image_url1"
+      }
+    ]
+  }
+}
