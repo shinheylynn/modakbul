@@ -19,12 +19,15 @@ export const Post = styled.div`
   &:hover {
     cursor: pointer;
     transition: 0.3s;
-    color: #7e846e;
+    color: #ffffff;
+    background-color: #1a4d59;
+    opacity: 80%;
   }
 `;
 
 export const PostImgBox = styled.div`
   margin: 5px;
+  height: 350px;
 `;
 
 export const PostImg = styled.img`
@@ -32,10 +35,6 @@ export const PostImg = styled.img`
   object-fit: cover;
   border-radius: 10px;
   width: 100%;
-  &:hover {
-    transition: 0.3s;
-    opacity: 60%;
-  }
 `;
 
 export const PostTitleBox = styled.div`
@@ -50,16 +49,24 @@ export const PostTitle = styled.div`
   padding-left: 10px;
 `;
 
-export const PostWriterBox = styled.div`
+export const PostWriterProfileWrapper = styled.div`
   border-top: none;
   height: 15px;
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  gap: 5px;
 `;
 
-export const PostWriter = styled.div`
+export const PostWriterImg = styled.img`
+  object-fit: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+`;
+
+export const PostWriterName = styled.div`
   font-size: 80%;
   padding-right: 10px;
 `;
