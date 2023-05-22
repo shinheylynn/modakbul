@@ -3,7 +3,9 @@ import GoogleLoginButton from './GoogleLoginButton';
 import * as S from './Login.style';
 
 export default function Login() {
-  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
+  const clientId =
+    '398058854903-52lqo1sibg8atk38d839inqpecmklc54.apps.googleusercontent.com' ||
+    '';
 
   return (
     <S.AllWrap>
