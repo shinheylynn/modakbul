@@ -75,6 +75,7 @@ export const Like = styled(Scrape)`
 export const PostingWrap = styled.div`
   display: flex;
   flex-direction: row;
+  //overflow: scroll;
 `;
 
 export const PostingImgWrap = styled.div`

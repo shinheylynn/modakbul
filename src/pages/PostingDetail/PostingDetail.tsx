@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import CommentsList from './components/Comment/CommentList';
 import Map from './components/Map/Map';
 import API from '../../config/config';
@@ -16,7 +13,7 @@ interface PostingData {
   feedImages: { imageId: number; imageUrl: string }[];
   feedLikeCount: string;
   feedScrapCount: string;
-  feedCommentCount: string;
+  //feedCommentCount: string;
   feedTitle: string;
   postId: number;
   userFeedLike: boolean;
@@ -25,36 +22,104 @@ interface PostingData {
   userProfileImage: string;
 }
 
-// interface CommentsListProps {
-//   postingData: PostingData[];
-// }
-
 export default function PostingDetail() {
-  const [scrapeBtn, setScrapeBtn] = useState(false);
-  const [likeBtn, setLikeBtn] = useState(false);
-  const [controlScrapeBtn, setControlScrapeBtn] = useState(false); // fetch코드 작성시 초기값을 data fetching 값으로 수정
-  const [controlLikeBtn, setControlLikeBtn] = useState(false); // fetch코드 작성시 초기값을 data fetching 값으로 수정
   const [postingData, setPostingData] = useState<PostingData[]>([]);
-  const params = useParams();
 
-  const scrapeBtnhandler = () => {
-    setScrapeBtn(prev => {
-      return !prev;
-    });
-    setControlScrapeBtn(true);
-  };
+  const [scrapBtn, setScrapBtn] = useState(
+    postingData.length > 0 ? postingData[0].userFeedScrap : false
+  );
+  const [controlScrapBtn, setControlScrapBtn] = useState(false);
+
+  const [likeBtn, setLikeBtn] = useState(
+    postingData.length > 0 ? postingData[0].userFeedLike : false
+  );
+  const [controlLikeBtn, setControlLikeBtn] = useState(false);
+
+  const params = useParams();
 
   const likeBtnhandler = () => {
     setLikeBtn(prev => {
-      return !prev;
+      const newUserFeedLike = !prev;
+      setPostingData(prevPostingData => {
+        const updatedPostingData = [...prevPostingData];
+        if (updatedPostingData.length > 0) {
+          updatedPostingData[0].userFeedLike = newUserFeedLike;
+          updatedPostingData[0].feedLikeCount = newUserFeedLike
+            ? (parseInt(updatedPostingData[0].feedLikeCount) + 1).toString()
+            : (parseInt(updatedPostingData[0].feedLikeCount) - 1).toString();
+        }
+        return updatedPostingData;
+      });
+      setControlLikeBtn(true);
+      return newUserFeedLike;
     });
-    setControlLikeBtn(true);
   };
 
-  interface itemsProps {
-    item: string;
-    name: string;
-  }
+  const scrapBtnhandler = () => {
+    setScrapBtn(prev => {
+      const newUserFeedScrape = !prev;
+      setPostingData(prevPostingData => {
+        const updatedPostingData = [...prevPostingData];
+        if (updatedPostingData.length > 0) {
+          updatedPostingData[0].userFeedScrap = newUserFeedScrape;
+          updatedPostingData[0].feedScrapCount = newUserFeedScrape
+            ? (parseInt(updatedPostingData[0].feedScrapCount) + 1).toString()
+            : (parseInt(updatedPostingData[0].feedScrapCount) - 1).toString();
+        }
+        return updatedPostingData;
+      });
+      setControlScrapBtn(true);
+      return newUserFeedScrape;
+    });
+  };
+
+  useEffect(() => {
+    if (likeBtn && controlLikeBtn) {
+      fetch(`${API.LIKE_POSTING}/${params.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }).then(res => {
+        return res.json();
+      });
+    } else if (!likeBtn && controlLikeBtn) {
+      fetch(`${API.LIKE_POSTING}/${params.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }).then(res => {
+        return res.json();
+      });
+    }
+  }, [likeBtn]);
+
+  useEffect(() => {
+    if (scrapBtn && controlScrapBtn) {
+      fetch(`${API.SCRAP_POSTING}/${params.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }).then(res => {
+        return res.json();
+      });
+    } else if (!scrapBtn && controlScrapBtn) {
+      fetch(`${API.SCRAP_POSTING}/${params.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }).then(res => {
+        return res.json();
+      });
+    }
+  }, [scrapBtn]);
 
   useEffect(() => {
     fetch(`${API.POSTING_DETAIL}/${params.id}`, {
@@ -68,27 +133,14 @@ export default function PostingDetail() {
         return res.json();
       })
       .then(data => {
-        setPostingData(data.feedDetail);
+        const fetchedPostingData = data.feedDetail;
+        if (fetchedPostingData.length > 0) {
+          setLikeBtn(fetchedPostingData[0].userFeedLike);
+          setScrapBtn(fetchedPostingData[0].userFeedScrap);
+          setPostingData(fetchedPostingData);
+        }
       });
   }, [params.id]);
-
-  //console.log(postingData[0].userName);
-  console.log(postingData[0]);
-
-  const items: itemsProps[] = [
-    {
-      item: 'http://placehold.it/1200x400',
-      name: '이미지01',
-    },
-    {
-      item: 'http://placehold.it/1200x400/ff0000',
-      name: '이미지02',
-    },
-    {
-      item: 'http://placehold.it/1200x400/00ffff',
-      name: '이미지03',
-    },
-  ];
 
   return (
     <S.AllWrap>
@@ -114,20 +166,20 @@ export default function PostingDetail() {
                   <S.Like
                     src={
                       likeBtn
-                        ? '/public/images/postingDetail/fillheart.png'
-                        : '/public/images/postingDetail/heart.png'
+                        ? '/images/postingDetail/fillheart.png'
+                        : '/images/postingDetail/heart.png'
                     }
                     alt="likeBtn"
                     onClick={likeBtnhandler}
                   />
                   <S.Scrape
                     src={
-                      scrapeBtn
-                        ? 'public/images/postingDetail/fillbookmark.png'
-                        : 'public/images/postingDetail/bookmark.png'
+                      scrapBtn
+                        ? '/images/postingDetail/fillbookmark.png'
+                        : '/images/postingDetail/bookmark.png'
                     }
-                    alt="scrapeBtn"
-                    onClick={scrapeBtnhandler}
+                    alt="scrapBtn"
+                    onClick={scrapBtnhandler}
                   />
                 </div>
               </S.UserInfoWrap>
