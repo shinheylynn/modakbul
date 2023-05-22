@@ -1,5 +1,6 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GoogleLoginButton from './GoogleLoginButton';
+import React from 'react';
 import * as S from './Login.style';
 
 export default function Login() {

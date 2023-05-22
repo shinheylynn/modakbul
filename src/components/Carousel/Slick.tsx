@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Slider, { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick.css';
