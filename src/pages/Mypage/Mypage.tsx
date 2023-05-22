@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import React from 'react';
 import ListComponent from './components/ListComponent';
 import * as S from './Mypage.style';
 import API from '../../config/config';
