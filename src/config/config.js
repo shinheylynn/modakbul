@@ -7,6 +7,9 @@ export const API = {
   POSTING_COMMENTS: `${BASE_URl}/comments`,
   MAIN: `${BASE_URl}/main`,
   POSTING: `${BASE_URl}/feeds`,
+  GET_POSTING_COMMENTS: `${BASE_URl}/feeds/comment`,
+  LIKE_POSTING: `${BASE_URl}/likes/post`,
+  SCRAP_POSTING: `${BASE_URl}/scraps/post`,
 };
 
 export default API;

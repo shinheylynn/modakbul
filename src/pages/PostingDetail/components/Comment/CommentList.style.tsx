@@ -26,7 +26,12 @@ export const CountScrap = styled(CountLike)``;
 export const CommentsWrap = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  max-height: 87%;
+  overflow: auto;
 `;
+
+// export const Scroll = styled.div``;
 
 export const CountingWrap = styled.div`
   display: flex;
@@ -93,7 +98,24 @@ export const CommentWrap = styled.div`
   display: flex;
 `;
 
+export const UsersImgWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const CommentDetailWrap = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const EmptyCommentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const EmptyCommentList = styled.img`
+  width: 100%;
+  height: 100%;
+  margin-top: 133px;
 `;

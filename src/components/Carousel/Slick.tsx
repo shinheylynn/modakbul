@@ -54,13 +54,16 @@ export default function Slick({
       arrows: true, // 화살표 버튼 표시
       prevArrow: (
         <DivPre onClick={prevSlide}>
-          <ArrowImg src="images/postingDetail/leftArrows.png" alt="prevArrow" />
+          <ArrowImg
+            src="/images/postingDetail/leftArrows.png"
+            alt="prevArrow"
+          />
         </DivPre>
       ), // 이전 버튼 클릭 시
       nextArrow: (
         <Div onClick={nextSlide}>
           <ArrowImg
-            src="images/postingDetail/rightArrows.png"
+            src="/images/postingDetail/rightArrows.png"
             alt="nextArrow"
           />
         </Div>
