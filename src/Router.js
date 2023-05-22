@@ -7,6 +7,8 @@ import Posting from './pages/Posting/Posting';
 import PostingDetail from './pages/PostingDetail/PostingDetail';
 import KakaoRedirect from './pages/Login/KakaoRedirect';
 import Container from './components/Container/Container';
+import MainMap from './pages/Main/MainMap/MainMap';
+import About from './pages/Main/About/About';
 
 const Router = () => {
   return (
@@ -14,6 +16,8 @@ const Router = () => {
       <Routes>
         <Route element={<Container />}>
           <Route path="/" element={<Main />} />
+          <Route path="/map" element={<MainMap />} />
+          <Route path="/about" element={<About />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/posting" element={<Posting />} />
           <Route path="/postingdetail/:id" element={<PostingDetail />} />
