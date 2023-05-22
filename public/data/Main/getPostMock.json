@@ -4,54 +4,63 @@
       "id": 1,
       "title": "포스팅1",
       "writer": "작성자1",
+      "writerImg": "/images/main/camping1.jpg",
       "img": "/images/main/camping1.jpg"
     },
     {
       "id": 2,
       "title": "포스팅2",
       "writer": "작성자2",
+      "writerImg": "/images/main/camping2.jpg",
       "img": "/images/main/camping2.jpg"
     },
     {
       "id": 3,
       "title": "포스팅3",
       "writer": "작성자3",
+      "writerImg": "/images/main/camping3.jpg",
       "img": "/images/main/camping3.jpg"
     },
     {
       "id": 4,
       "title": "포스팅4",
       "writer": "작성자4",
+      "writerImg": "/images/main/camping4.jpg",
       "img": "/images/main/camping4.jpg"
     },
     {
       "id": 5,
       "title": "포스팅5",
       "writer": "작성자5",
+      "writerImg": "/images/main/camping5.jpg",
       "img": "/images/main/camping5.jpg"
     },
     {
       "id": 6,
       "title": "포스팅6",
       "writer": "작성자6",
+      "writerImg": "/images/main/camping6.jpg",
       "img": "/images/main/camping6.jpg"
     },
     {
       "id": 7,
       "title": "포스팅7",
       "writer": "작성자7",
+      "writerImg": "/images/main/camping7.jpg",
       "img": "/images/main/camping7.jpg"
     },
     {
       "id": 8,
       "title": "포스팅8",
       "writer": "작성자8",
+      "writerImg": "/images/main/camping8.jpg",
       "img": "/images/main/camping8.jpg"
     },
     {
       "id": 9,
       "title": "포스팅9",
       "writer": "작성자9",
+      "writerImg": "/images/main/camping9.jpg",
       "img": "/images/main/camping9.jpg"
     }
   ]

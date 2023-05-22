@@ -33,8 +33,11 @@ export const CategoryBox = styled.div`
   font-size: 20px;
 `;
 
-export const Categories = styled.div`
+export const Categories = styled.button`
   font-weight: 500;
+  border: none;
+  font-size: large;
+  background-color: transparent;
   color: #f0f0f0;
   text-shadow: 1px 1px 1px rgb(239, 176, 110);
   &:hover {

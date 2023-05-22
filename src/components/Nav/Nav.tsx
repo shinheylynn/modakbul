@@ -20,7 +20,15 @@ export default function Nav() {
       </S.LogoBox>
       <S.CategoryBox>
         {CATEGORIES.map(category => (
-          <S.Categories key={category.id}>{category.list}</S.Categories>
+          <S.Categories
+            key={category.id}
+            onClick={() => {
+              navigate(category.navigate);
+              console.log(category.navigate);
+            }}
+          >
+            {category.list}
+          </S.Categories>
         ))}
       </S.CategoryBox>
       <S.ProfileBox>

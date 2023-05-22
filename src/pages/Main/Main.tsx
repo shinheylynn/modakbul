@@ -1,4 +1,4 @@
-import PostGrid from './PostGrid/PostGrid';
+import CampSites from './CampSites/CampSites';
 import * as S from './Main.style';
 
 export default function Main() {
@@ -14,7 +14,7 @@ export default function Main() {
           </S.Description>
         </S.DescriptionBox>
       </S.TitleBox>
-      <PostGrid />
+      <CampSites />
     </S.MainContainer>
   );
 }
