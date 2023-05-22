@@ -1,4 +1,5 @@
 import * as S from './Comments.style';
+import React from 'react';
 
 interface Pros {
   token: string | null;
