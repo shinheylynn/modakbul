@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 import PostImages from './PostImages/PostImages';
+import API from '../../config/config';
 import * as S from './Posting.style';
 
 export default function Posting() {
+  const navigate = useNavigate();
   const [formContents, setFormContents] = useState({
     title: '',
     contents: '',
@@ -17,21 +20,10 @@ export default function Posting() {
     setFormContents(prev => ({ ...prev, contents: value }));
   };
 
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
-
-  const handleAddImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-      const selectedImages = Array.from(files);
-      setImageFiles(selectedImages);
-    }
-  };
-
-  //이미지 관련 코드
   const [showImages, setShowImages] = useState<string[]>([]);
   const [imageLists, setImageLists] = useState<File[]>([]);
 
-  const handleShowImages = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList: FileList | null = e.target.files;
     let imageUrlLists: string[] = [...showImages];
     let selectedImages: File[] = [];
@@ -53,9 +45,6 @@ export default function Posting() {
     setImageLists(prevImageLists => [...prevImageLists, ...selectedImages]); //이거임 별표별표
     setShowImages(imageUrlLists);
   };
-  // 이미지 관련 코드 여기까지
-
-  // const { title, content, images } = uploadForm;
 
   const access_token = localStorage.getItem('access_token');
 
@@ -77,7 +66,7 @@ export default function Posting() {
       }
     }
 
-    fetch('http://192.168.0.249:3003/feeds', {
+    fetch(`${API.POSTING}`, {
       method: 'POST',
       headers: {
         authorization: access_token ?? '',
@@ -87,10 +76,10 @@ export default function Posting() {
       .then(res => res.json())
       .then(data => {
         if (data.message === 'FEED UPLOAD SUCCESS!') {
-          // TO-DO: 통신 성공 시 submit & navigate
-          alert('업로드 성공');
+          navigate('/'); // To-do: 해당 detail 페이지로 넘어가게끔 navigate 코드 수정 필요
+          alert('업로드 성공'); // To-do: 나중에는 alert창 제거 필요
         } else {
-          alert('업로드 실패. 네트워크를 확인해 주세요.');
+          alert('업로드 실패. 네트워크를 확인해 주세요.'); // To-do: alert창 대신 예쁜 거로 수정...ㅎㅎ
         }
       });
   };
@@ -98,8 +87,11 @@ export default function Posting() {
   return (
     <S.PostingContainer>
       <S.TitleWrapper>
+        <S.TitleLegendWrapper>
+          <S.TitleLegend>Title</S.TitleLegend>
+        </S.TitleLegendWrapper>
         <S.TitleInput
-          placeholder="제목"
+          placeholder="제목을 입력해주세요."
           value={formContents.title}
           onChange={handleTitle}
         />
@@ -114,12 +106,11 @@ export default function Posting() {
       <PostImages
         showImages={showImages}
         setShowImages={setShowImages}
-        handleShowImages={handleShowImages}
-        handleAddImage={handleAddImage}
+        handleImages={handleImages}
       />
       <form onSubmit={onSubmit}>
         <S.SubmitBtn type="submit">
-          <span>업로드</span>
+          <span>⬆️ 업로드</span>
         </S.SubmitBtn>
       </form>
     </S.PostingContainer>

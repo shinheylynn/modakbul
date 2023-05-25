@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ReactQuill from 'react-quill';
 
-export const PostingContainer = styled.div`
+export const PostingContainer = styled.fieldset`
   border: 1px solid black;
   width: 100vw;
   padding: 30px;
@@ -14,9 +14,27 @@ export const TitleWrapper = styled.div`
   border: 1px solid #cccccc;
   border-bottom: none;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 80vw;
   height: 60px;
+  position: relative;
+`;
+
+export const TitleLegendWrapper = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 50px;
+  top: -10px;
+  margin-left: 10px;
+`;
+
+export const TitleLegend = styled.legend`
+  color: gray;
+  font-size: large;
 `;
 
 export const TitleInput = styled.input`
@@ -26,7 +44,7 @@ export const TitleInput = styled.input`
   font-size: x-large;
   border: none;
   ::placeholder {
-    font-size: x-large;
+    font-size: large;
   }
   :focus {
     outline: none;
@@ -47,13 +65,19 @@ export const CustomReactQuill = styled(ReactQuill)`
 `;
 
 export const SubmitBtn = styled.button`
-  border: 1px solid black;
+  border: none;
+  border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
-  width: 100px;
+  background-color: #a5651f;
+  width: 150px;
   height: 50px;
   margin: 10px;
+  font-size: medium;
   cursor: pointer;
+  :hover {
+    background-color: orange;
+    transition: 0.3s;
+  }
 `;
