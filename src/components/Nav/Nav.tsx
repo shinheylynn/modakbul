@@ -32,9 +32,11 @@ export default function Nav() {
         ))}
       </S.CategoryBox>
       <S.ProfileBox>
-        {access_token && (
+        {/* {access_token && (
           <PostingBtn userToken={userToken} setUserToken={setUserToken} />
-        )}
+        )} */}{' '}
+        {/* 로그인 시에만 작성 버튼이 보이도록 */}
+        <PostingBtn userToken={userToken} setUserToken={setUserToken} />
         <S.LoginBox>
           <LoginBtn userToken={userToken} setUserToken={setUserToken} />
         </S.LoginBox>
