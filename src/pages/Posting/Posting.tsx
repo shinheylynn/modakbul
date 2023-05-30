@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import PostImages from './PostImages/PostImages';
+import NaverMap from './NaverMap/NaverMap';
 import API from '../../config/config';
 import * as S from './Posting.style';
 
@@ -108,6 +109,7 @@ export default function Posting() {
         setShowImages={setShowImages}
         handleImages={handleImages}
       />
+      {/* <NaverMap /> */}
       <form onSubmit={onSubmit}>
         <S.SubmitBtn type="submit">
           <span>⬆️ 업로드</span>
