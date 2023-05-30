@@ -1,6 +1,6 @@
 import * as S from './Comments.style';
-import React, { useEffect, useRef } from 'react';
 import API from '../../../../config/config';
+import { useNavigate } from 'react-router-dom';
 
 interface CommentsData {
   commentContent: string;
@@ -11,15 +11,31 @@ interface CommentsData {
   commentUserProfileImage: string;
 }
 
+interface PostingData {
+  feedContent: string;
+  feedCreateTime: string;
+  feedImages: { imageId: number; imageUrl: string }[];
+  feedLikeCount: string;
+  feedScrapCount: string;
+  feedTitle: string;
+  postId: number;
+  userFeedLike: boolean;
+  userFeedScrap: boolean;
+  userName: string;
+  userProfileImage: string;
+}
+
 interface CommentsProps {
   commentsData: CommentsData[];
   token: string | null;
   setCommentsData: (commentsData: CommentsData[]) => void;
+  postingData: PostingData[];
 }
 
 export default function Comment({
   commentsData,
   token,
+  postingData,
   setCommentsData,
 }: CommentsProps) {
   const detailDate = (a: Date) => {
@@ -40,6 +56,8 @@ export default function Comment({
     return `${Math.floor(years)}년 전`;
   };
 
+  const navigate = useNavigate();
+
   const deleteComment = (id: number) => {
     fetch(`${API.POSTING_COMMENTS}`, {
       method: 'DELETE',
@@ -48,25 +66,29 @@ export default function Comment({
         Authorization: token || '',
       },
       body: JSON.stringify({
-        commentId: commentsData[0].commentId,
+        commentId: id,
       }),
     })
       .then(res => res.json())
       .then(res => {
-        if (res.status === 200)
+        if (res.status === 200) {
           setCommentsData(
             commentsData.filter(comment => comment.commentId !== id)
           );
+        } else if (!token === undefined) {
+          alert('로그인이 필요합니다.');
+          navigate('/login');
+        }
       });
   };
 
   //**FIX comment delete function**//
-  const removeComment = (id: number) => {
-    const removeComment = commentsData.filter(
-      comment => comment.commentId !== id
-    );
-    setCommentsData(removeComment);
-  };
+  // const removeComment = (id: number) => {
+  //   const removeComment = commentsData.filter(
+  //     comment => comment.commentId !== id
+  //   );
+  //   setCommentsData(removeComment);
+  // };
 
   return (
     <>
@@ -87,15 +109,13 @@ export default function Comment({
                 />
                 {/* 버튼이 눌린 후 하트이미지와 좋아요수 출력되게 분기처리해야함 */}
                 <S.replyComment>답글달기</S.replyComment>
-                {comment.commentUserId ? (
+                {postingData[0].postId === comment.commentUserId ? (
                   <S.DeleteComment
                     onClick={() => deleteComment(comment.commentId)}
                   >
                     삭제
                   </S.DeleteComment>
-                ) : (
-                  <div />
-                )}
+                ) : null}
               </S.CommentInfoWrap>
             </S.CommentTextWrap>
           </S.CommentWrap>

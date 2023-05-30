@@ -5,7 +5,7 @@ import Map from './components/Map/Map';
 import API from '../../config/config';
 import Slick from '../../components/Carousel/Slick';
 import * as S from './PostingDetail.style';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface PostingData {
   feedContent: string;
@@ -13,13 +13,16 @@ interface PostingData {
   feedImages: { imageId: number; imageUrl: string }[];
   feedLikeCount: string;
   feedScrapCount: string;
-  //feedCommentCount: string;
   feedTitle: string;
   postId: number;
   userFeedLike: boolean;
   userFeedScrap: boolean;
   userName: string;
   userProfileImage: string;
+}
+
+interface CommentListProps {
+  postingData: PostingData[]; // 타입 변경: PostingData[]
 }
 
 export default function PostingDetail() {
@@ -37,7 +40,14 @@ export default function PostingDetail() {
 
   const params = useParams();
 
+  const navigate = useNavigate();
+
   const likeBtnhandler = () => {
+    if (!localStorage.getItem('access_token')) {
+      alert('로그인 후 이용가능합니다.');
+      navigate('/login');
+      return;
+    }
     setLikeBtn(prev => {
       const newUserFeedLike = !prev;
       setPostingData(prevPostingData => {
@@ -56,6 +66,11 @@ export default function PostingDetail() {
   };
 
   const scrapBtnhandler = () => {
+    if (!localStorage.getItem('access_token')) {
+      alert('로그인 후 이용가능합니다.');
+      navigate('/login');
+      return;
+    }
     setScrapBtn(prev => {
       const newUserFeedScrape = !prev;
       setPostingData(prevPostingData => {
@@ -122,13 +137,18 @@ export default function PostingDetail() {
   }, [scrapBtn]);
 
   useEffect(() => {
-    fetch(`${API.POSTING_DETAIL}/${params.id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('access_token') || '',
-      },
-    })
+    fetch(
+      localStorage.getItem('access_token')
+        ? `${API.LOGIN_POSTING_DETAIL}/${params.id}`
+        : `${API.POSTING_DETAIL}/${params.id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }
+    )
       .then(res => {
         return res.json();
       })
@@ -147,7 +167,6 @@ export default function PostingDetail() {
       {postingData.length > 0 && (
         <>
           <S.ThumbnailImg
-            // src="images/postingDetail/titleImg.jpg"
             src={postingData[0].feedImages[0].imageUrl}
             alt="thumbnailImg"
           />
@@ -186,11 +205,12 @@ export default function PostingDetail() {
               <S.PostingWrap>
                 <S.PostingImgWrap>
                   <Slick>
-                    {postingData[0].feedImages.map(({ imageUrl, imageId }) => (
-                      <S.SliderItem key={imageId}>
-                        <S.PostingImg src={imageUrl} />
-                      </S.SliderItem>
-                    ))}
+                    {postingData.length > 0 &&
+                      postingData[0].feedImages.map(({ imageUrl, imageId }) => (
+                        <S.SliderItem key={imageId}>
+                          <S.PostingImg src={imageUrl} />
+                        </S.SliderItem>
+                      ))}
                   </Slick>
                 </S.PostingImgWrap>
                 <CommentsList postingData={postingData} />
