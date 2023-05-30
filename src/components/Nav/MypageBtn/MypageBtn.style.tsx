@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PostBtnBox = styled.div`
+export const MypageBtnBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@ export const PostBtnBox = styled.div`
   min-height: 40px;
   background-color: rgb(30, 86, 98);
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 15px;
   &:hover {
     cursor: pointer;
     transition: 0.2s;
@@ -16,7 +16,7 @@ export const PostBtnBox = styled.div`
   }
 `;
 
-export const PostBtn = styled.img`
-  max-width: 20px;
-  max-height: 20px;
+export const MypageBtn = styled.img`
+  max-width: 30px;
+  max-height: 30px;
 `;
