@@ -5,63 +5,108 @@
       "feedTitle": "포스팅1",
       "userName": "작성자1",
       "userProfileImage": "/images/main/camping1.jpg",
-      "feedImage": "/images/main/camping1.jpg"
+      "feedImage": "/images/main/camping1.jpg",
+      "feedLikeCount": "1",
+      "feedScrapCount": "3",
+      "feedCommentCount": "0",
+      "userFeedLike": true,
+      "userFeedScrap": false
     },
     {
       "postId": 2,
       "feedTitle": "포스팅2",
       "userName": "작성자2",
       "userProfileImage": "/images/main/camping2.jpg",
-      "feedImage": "/images/main/camping2.jpg"
+      "feedImage": "/images/main/camping2.jpg",
+      "feedLikeCount": "2",
+      "feedScrapCount": "1",
+      "feedCommentCount": "3",
+      "userFeedLike": false,
+      "userFeedScrap": true
     },
     {
       "postId": 3,
       "feedTitle": "포스팅3",
       "userName": "작성자3",
       "userProfileImage": "/images/main/camping3.jpg",
-      "feedImage": "/images/main/camping3.jpg"
+      "feedImage": "/images/main/camping3.jpg",
+      "feedLikeCount": "10",
+      "feedScrapCount": "20",
+      "feedCommentCount": "20",
+      "userFeedLike": true,
+      "userFeedScrap": true
     },
     {
       "postId": 4,
       "feedTitle": "포스팅4",
       "userName": "작성자4",
       "userProfileImage": "/images/main/camping4.jpg",
-      "feedImage": "/images/main/camping4.jpg"
+      "feedImage": "/images/main/camping4.jpg",
+      "feedLikeCount": "10",
+      "feedScrapCount": "15",
+      "feedCommentCount": "5",
+      "userFeedLike": true,
+      "userFeedScrap": true
     },
     {
       "postId": 5,
       "feedTitle": "포스팅5",
       "userName": "작성자5",
       "userProfileImage": "/images/main/camping5.jpg",
-      "feedImage": "/images/main/camping5.jpg"
+      "feedImage": "/images/main/camping5.jpg",
+      "feedLikeCount": "5",
+      "feedScrapCount": "10",
+      "feedCommentCount": "2",
+      "userFeedLike": true,
+      "userFeedScrap": false
     },
     {
       "postId": 6,
       "feedTitle": "포스팅6",
       "userName": "작성자6",
       "userProfileImage": "/images/main/camping6.jpg",
-      "feedImage": "/images/main/camping6.jpg"
+      "feedImage": "/images/main/camping6.jpg",
+      "feedLikeCount": "1",
+      "feedScrapCount": "2",
+      "feedCommentCount": "3",
+      "userFeedLike": true,
+      "userFeedScrap": false
     },
     {
       "postId": 7,
       "feedTitle": "포스팅7",
       "userName": "작성자7",
       "userProfileImage": "/images/main/camping7.jpg",
-      "feedImage": "/images/main/camping7.jpg"
+      "feedImage": "/images/main/camping7.jpg",
+      "feedLikeCount": "1",
+      "feedScrapCount": "0",
+      "feedCommentCount": "0",
+      "userFeedLike": false,
+      "userFeedScrap": false
     },
     {
       "postId": 8,
       "feedTitle": "포스팅8",
       "userName": "작성자8",
       "userProfileImage": "/images/main/camping8.jpg",
-      "feedImage": "/images/main/camping8.jpg"
+      "feedImage": "/images/main/camping8.jpg",
+      "feedLikeCount": "1",
+      "feedScrapCount": "0",
+      "feedCommentCount": "1",
+      "userFeedLike": true,
+      "userFeedScrap": true
     },
     {
       "postId": 9,
       "feedTitle": "포스팅9",
       "userName": "작성자9",
       "userProfileImage": "/images/main/camping9.jpg",
-      "feedImage": "/images/main/camping9.jpg"
+      "feedImage": "/images/main/camping9.jpg",
+      "feedLikeCount": "5",
+      "feedScrapCount": "9",
+      "feedCommentCount": "6",
+      "userFeedLike": true,
+      "userFeedScrap": false
     }
   ]
 }
