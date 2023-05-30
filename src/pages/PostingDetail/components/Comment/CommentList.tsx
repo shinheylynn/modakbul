@@ -35,8 +35,6 @@ export default function CommentsList({ postingData }: CommentListProps) {
   const [comment, setComment] = useState('');
   const [commentData, setCommentData] = useState([{}]);
   const [commentsData, setCommentsData] = useState<CommentsData[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
 
   console.log(commentsData);
 
@@ -66,7 +64,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
       .then(res => {
         if (comment === '') {
           return alert('댓글을 입력 해 주세요');
-        } else if (token === 'undefined') {
+        } else if (!token) {
           alert('로그인이 필요합니다.');
           navigate('/login');
         }
@@ -78,6 +76,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
           commentUserId: postingData[0].postId,
           commentUserName: postingData[0].userName,
           commentUserProfileImage: postingData[0].userProfileImage,
+          // 로그인한 user의 프로필 이미지로 변경해야 함
         };
         setCommentsData([newComment, ...commentsData]);
         setComment('');
@@ -86,104 +85,72 @@ export default function CommentsList({ postingData }: CommentListProps) {
 
   const params = useParams();
 
-  useEffect(() => {
-    fetch(`${API.GET_POSTING_COMMENTS}/${params.id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('access_token') || '',
-      },
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setCommentsData(data.feedComment);
-      });
-  }, [params.id]);
-
-  const observer = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    observer.current = new IntersectionObserver(
-      entries => {
-        const firstEntry = entries[0];
-        if (firstEntry.isIntersecting && hasMore) {
-          loadMoreComments();
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const target = document.getElementById('observer');
-    if (target) {
-      observer.current.observe(target);
-    }
-
-    return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-    };
-  }, [hasMore]);
-
-  const loadMoreComments = () => {
-    const nextPage = currentPage + 1;
-
-    fetch(`${API.GET_POSTING_COMMENTS}/${params.id}?page=${nextPage}`, {
-      // fetch next page of comments data
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.feedComment.length > 0) {
-          setCommentsData(prevData => [...prevData, ...data.feedComment]);
-          setCurrentPage(nextPage);
-        } else {
-          setHasMore(false);
-        }
-      });
-  };
-
+  //**첫 렌더링시 8개씩 끊어서 불러오게 수정해야 함**//
   // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     entries => {
-  //       const firstEntry = entries[0];
-  //       if (firstEntry.isIntersecting) {
-  //         // 스크롤의 끝에 도달했을 때 실행할 로직
-  //         loadMoreComments();
-  //       }
-  //     },
-  //     { threshold: 1 } // 1은 요소가 전부 다 보일 때 콜백 호출
-  //   );
-
-  //   const target = document.getElementById('observer');
-  //   if (target) {
-  //     observer.observe(target);
-  //   }
-
-  //   return () => {
-  //     observer.unobserve(target as Element);
-  //   };
-  // }, []);
-
-  // const loadMoreComments = () => {
-  //   // 새로운 페이지의 댓글 로드 로직
-  //   const nextPage = currentPage + 1;
-
-  //   fetch(`${API.GET_POSTING_COMMENTS}/${params.id}?page=${nextPage}`, {
+  //   fetch(`${API.GET_POSTING_COMMENTS}/${params.id}`, {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
   //       Authorization: localStorage.getItem('access_token') || '',
   //     },
   //   })
-  //     .then(res => res.json())
+  //     .then(res => {
+  //       return res.json();
+  //     })
   //     .then(data => {
-  //       // 새로운 페이지의 댓글을 현재 댓글 데이터에 추가
-  //       setCommentsData(prevData => [...prevData, ...data.feedComment]);
-  //       setCurrentPage(nextPage);
+  //       setCommentsData(data.feedComment);
   //     });
-  // };
+  // }, [params.id]);
+
+  const observerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      const [entry] = entries;
+      if (entry.isIntersecting) {
+        // 스크롤이 감지되면 추가적인 데이터를 불러올 수 있는 함수 호출
+        loadMoreComments();
+      }
+    }, observerOptions);
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, []);
+
+  const loadMoreComments = () => {
+    const startIndex = commentsData.length;
+    const endIndex = startIndex + 8;
+
+    // 서버에서 startIndex부터 endIndex까지의 댓글 데이터를 불러오는 API 요청을 보내고,
+    // 응답으로 받은 데이터를 commentsData에 추가
+    fetch(
+      `${API.GET_POSTING_COMMENTS}/${params.id}?startIndex=${startIndex}&endIndex=${endIndex}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('access_token') || '',
+        },
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        setCommentsData([...commentsData, ...data.feedComment]);
+      });
+  };
 
   return (
     <S.CommentsAllWrap>
@@ -196,6 +163,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
                   commentsData={commentsData}
                   token={token}
                   setCommentsData={setCommentsData}
+                  postingData={postingData}
                 />
               ) : (
                 <S.EmptyCommentWrap>
@@ -204,7 +172,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
                 </S.EmptyCommentWrap>
               )}
               {/* 무한 스크롤을 감지할 요소 */}
-              {/* <div id="observer" /> */}
+              <div id="observer" ref={observerRef} />
             </S.CommentDetailWrap>
           </S.CommentWrap>
         </div>
@@ -224,6 +192,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
         </div>
         <S.InputWrap>
           <S.UserImg src={postingData[0].userProfileImage} alt="userImg" />
+          {/* 로그인한 user의 img로 변경해야 함 */}
           <S.CommentInputWrap>
             <S.CommentInput
               placeholder=" 캠핑을 소통해봐요!"
