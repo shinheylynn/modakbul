@@ -4,8 +4,8 @@ export const PostBtnBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   background-color: rgb(30, 86, 98);
   border-radius: 50%;
   margin: 10px;

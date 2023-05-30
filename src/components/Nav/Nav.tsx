@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginBtn from './LoginBtn/LoginBtn';
 import { CATEGORIES } from './CategoryList';
@@ -11,7 +11,9 @@ export default function Nav() {
   const goToMain = () => {
     navigate('/');
   };
-  const access_token = userToken;
+  useEffect(() => {
+    const access_token = setUserToken(localStorage.getItem('access_token'));
+  }, []);
 
   return (
     <S.NavContainer>
@@ -31,10 +33,6 @@ export default function Nav() {
         ))}
       </S.CategoryBox>
       <S.ProfileBox>
-        {/* {access_token && (
-          <PostingBtn userToken={userToken} setUserToken={setUserToken} />
-        )} */}{' '}
-        {/* 로그인 시에만 작성 버튼이 보이도록 */}
         <PostingBtn userToken={userToken} setUserToken={setUserToken} />
         <S.LoginBox>
           <LoginBtn userToken={userToken} setUserToken={setUserToken} />

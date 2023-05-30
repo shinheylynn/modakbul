@@ -15,6 +15,8 @@ export default function LoginBtn({ userToken, setUserToken }: LoginBtnProps) {
   };
   const handleLogout: MouseEventHandler<HTMLButtonElement> = e => {
     localStorage.removeItem('access_token');
+    navigate('/');
+    window.location.replace('/');
   };
 
   return (

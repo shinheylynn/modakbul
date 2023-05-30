@@ -30,14 +30,6 @@ export default function CampSites() {
       navigate(`/postingDetail/${id}`);
     };
 
-  const [scrapBtn, setScrapBtn] = useState(
-    post.length > 0 ? post[0].userFeedScrap : false
-  );
-
-  const [likeBtn, setLikeBtn] = useState(
-    post.length > 0 ? post[0].userFeedLike : false
-  );
-
   return (
     <S.PostingBox>
       {post.map(data => (
