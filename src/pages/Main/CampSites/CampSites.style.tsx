@@ -55,14 +55,62 @@ export const PostWriterProfileWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   gap: 5px;
+`;
+
+export const LikeBox = styled.div`
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Like = styled.img`
+  width: 25px;
+`;
+
+export const LikeCount = styled.div`
+  font-size: 80%;
+`;
+
+export const ScrapBox = styled.div`
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Scrap = styled.img`
+  width: 25px;
+`;
+
+export const ScrapCount = styled.div`
+  font-size: 80%;
+`;
+
+export const CommentBox = styled.div`
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Comment = styled.img`
+  width: 25px;
+`;
+
+export const CommentCount = styled.div`
+  font-size: 80%;
 `;
 
 export const PostWriterImg = styled.img`
   object-fit: cover;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 `;
 
