@@ -38,6 +38,8 @@ export default function CommentsList({ postingData }: CommentListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
+  console.log(commentsData);
+
   const getComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   };
@@ -185,8 +187,8 @@ export default function CommentsList({ postingData }: CommentListProps) {
 
   return (
     <S.CommentsAllWrap>
-      <S.CommentsWrap id="observer">
-        <S.CommentListWrap>
+      <S.CommentsWrap>
+        <div>
           <S.CommentWrap>
             <S.CommentDetailWrap>
               {commentsData.length > 0 ? (
@@ -205,7 +207,7 @@ export default function CommentsList({ postingData }: CommentListProps) {
               {/* <div id="observer" /> */}
             </S.CommentDetailWrap>
           </S.CommentWrap>
-        </S.CommentListWrap>
+        </div>
       </S.CommentsWrap>
 
       <S.CommentItemWrap>

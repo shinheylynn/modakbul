@@ -5,6 +5,7 @@ export const CommentsAllWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 70%;
+  height: 622px;
   padding: 10px;
 `;
 
@@ -27,13 +28,11 @@ export const CommentsWrap = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  max-height: 87%;
-  overflow: auto;
+  height: 100%;
 `;
 
-// export const Scroll = styled.div``;
-
 export const CountingWrap = styled.div`
+  margin-top: 10px;
   display: flex;
 `;
 
@@ -88,10 +87,6 @@ export const CommentBtn = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
-`;
-
-export const CommentListWrap = styled.div`
-  //display: flex;
 `;
 
 export const CommentWrap = styled.div`
