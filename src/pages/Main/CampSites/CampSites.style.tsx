@@ -68,11 +68,14 @@ export const LikeBox = styled.div`
 `;
 
 export const Like = styled.img`
-  width: 25px;
+  width: 27px;
+  position: relative;
+  top: 1px;
 `;
 
 export const LikeCount = styled.div`
   font-size: 80%;
+  position: absolute;
 `;
 
 export const ScrapBox = styled.div`
@@ -84,11 +87,14 @@ export const ScrapBox = styled.div`
 `;
 
 export const Scrap = styled.img`
-  width: 25px;
+  width: 30px;
+  position: relative;
+  top: 1.5px;
 `;
 
 export const ScrapCount = styled.div`
   font-size: 80%;
+  position: absolute;
 `;
 
 export const CommentBox = styled.div`
@@ -100,11 +106,14 @@ export const CommentBox = styled.div`
 `;
 
 export const Comment = styled.img`
-  width: 25px;
+  width: 30px;
+  position: relative;
+  top: 2px;
 `;
 
 export const CommentCount = styled.div`
   font-size: 80%;
+  position: absolute;
 `;
 
 export const PostWriterImg = styled.img`

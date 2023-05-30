@@ -64,7 +64,7 @@ export default function CampSites() {
               <S.ScrapCount>{data.feedScrapCount}</S.ScrapCount>
             </S.ScrapBox>
             <S.CommentBox>
-              <S.Comment src="/images/main/commnetIcon.png" alt="commentBtn" />
+              <S.Comment src="/images/main/comment_icon.png" alt="commentBtn" />
               <S.CommentCount>{data.feedCommentCount}</S.CommentCount>
             </S.CommentBox>
             <S.PostWriterImg src={data.userProfileImage} alt="프로필이미지" />
