@@ -35,7 +35,7 @@ export default function PostImages({
           <input type="file" id="input-file" multiple onChange={handleImages} />
           <span>사진추가</span>
         </S.AddButton>
-        <S.imgInfo>이미지 첨부는 최대 10장까지 가능합니다.</S.imgInfo>
+        <S.ImgInfo>이미지 첨부는 최대 10장까지 가능합니다.</S.ImgInfo>
       </S.AddButtonBox>
     </S.PostingImgContainer>
   );

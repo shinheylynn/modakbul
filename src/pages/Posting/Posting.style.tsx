@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import ReactQuill from 'react-quill';
 
 export const PostingContainer = styled.fieldset`
-  border: 1px solid black;
   width: 100vw;
   padding: 30px;
   display: flex;
@@ -52,7 +51,6 @@ export const TitleInput = styled.input`
 `;
 
 export const QuillContainer = styled.div`
-  /* border: 1px solid gray; */
   display: flex;
   justify-content: center;
   width: 80vw;

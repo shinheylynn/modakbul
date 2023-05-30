@@ -98,7 +98,7 @@ export const AddButton = styled.label`
   }
 `;
 
-export const imgInfo = styled.div`
+export const ImgInfo = styled.div`
   font-size: small;
   padding-top: 20px;
 `;
