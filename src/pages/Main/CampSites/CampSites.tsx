@@ -7,8 +7,18 @@ export default function CampSites() {
   const navigate = useNavigate();
   const [post, setPost] = useState<any[]>([]);
 
+  // To-do: 실제 서버 연결 시
+  // useEffect(() => {
+  //   fetch(`${API.MAIN}`, {
+  //     method: 'GET',
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => setPost(data.mainPage));
+  // }, []);
+
+  // Mockdata 이용 시
   useEffect(() => {
-    fetch(`${API.MAIN}`, {
+    fetch('/data/Main/getPostMock.json', {
       method: 'GET',
     })
       .then(res => res.json())
