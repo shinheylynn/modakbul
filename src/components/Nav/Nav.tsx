@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginBtn from './LoginBtn/LoginBtn';
+import MypageBtn from './MypageBtn/MypageBtn';
 import { CATEGORIES } from './CategoryList';
 import PostingBtn from './PostingBtn/PostingBtn';
 import * as S from './Nav.style';
@@ -33,10 +34,11 @@ export default function Nav() {
         ))}
       </S.CategoryBox>
       <S.ProfileBox>
-        <PostingBtn userToken={userToken} setUserToken={setUserToken} />
-        <S.LoginBox>
-          <LoginBtn userToken={userToken} setUserToken={setUserToken} />
-        </S.LoginBox>
+        {userToken && (
+          <PostingBtn userToken={userToken} setUserToken={setUserToken} />
+        )}
+        {userToken && <MypageBtn />}
+        <LoginBtn userToken={userToken} setUserToken={setUserToken} />
       </S.ProfileBox>
     </S.NavContainer>
   );

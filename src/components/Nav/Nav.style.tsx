@@ -12,7 +12,7 @@ export const LogoBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 20%;
   &:hover {
     cursor: pointer;
   }
@@ -29,7 +29,7 @@ export const CategoryBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 150px;
-  width: 70%;
+  width: 60%;
 `;
 
 export const Categories = styled.button`
@@ -48,13 +48,7 @@ export const Categories = styled.button`
 
 export const ProfileBox = styled.div`
   background-color: #ef9f19;
-  width: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const LoginBox = styled.div`
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
