@@ -24,22 +24,21 @@ export const Logo = styled.img`
 `;
 
 export const CategoryBox = styled.div`
-  background-color: #a56520;
+  background-color: #ef9f19;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 150px;
   width: 70vw;
-  font-size: 20px;
 `;
 
 export const Categories = styled.button`
   font-weight: 500;
   border: none;
-  font-size: large;
+  font-size: x-large;
   background-color: transparent;
   color: #f0f0f0;
-  text-shadow: 1px 1px 1px rgb(239, 176, 110);
+  text-shadow: 2px 2px 2px gray;
   &:hover {
     cursor: pointer;
     transition: 0.3s;
@@ -48,7 +47,7 @@ export const Categories = styled.button`
 `;
 
 export const ProfileBox = styled.div`
-  background-color: #a56520;
+  background-color: #ef9f19;
   width: 15vw;
   display: flex;
   align-items: center;

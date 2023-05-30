@@ -24,7 +24,6 @@ export default function Nav() {
             key={category.id}
             onClick={() => {
               navigate(category.navigate);
-              console.log(category.navigate);
             }}
           >
             {category.list}
