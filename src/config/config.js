@@ -1,4 +1,4 @@
-const BASE_URl = 'http://192.168.0.2:3003';
+const BASE_URl = 'http://192.168.0.7:3003';
 
 export const API = {
   LOGIN: `${BASE_URl}/users/googleLogin`,
