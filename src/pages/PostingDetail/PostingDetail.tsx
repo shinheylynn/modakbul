@@ -186,10 +186,6 @@ export default function PostingDetail() {
     <S.AllWrap>
       {postingData.length > 0 && (
         <>
-          {/* <S.ThumbnailImg
-            src={postingData[0].feedImages[0].imageUrl}
-            alt="thumbnailImg"
-          /> */}
           <S.TitleWrap>
             <S.Title>{postingData[0].feedTitle}</S.Title>
             <S.SubTitleWrap>

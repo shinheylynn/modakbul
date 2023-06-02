@@ -1,7 +1,6 @@
 import * as S from './Comments.style';
 import API from '../../../../config/config';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 interface CommentsData {
   commentContent: string;
