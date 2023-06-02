@@ -40,7 +40,7 @@ export const SliderItem = styled.div`
 
 export const PostingImg = styled.img`
   width: 100%;
-  height: 607px;
+  height: 646px;
   padding: 20px;
 `;
 
@@ -98,7 +98,28 @@ export const MainTextWrap = styled.div`
 
 export const MainText = styled.div``;
 
+export const Place = styled.h1`
+  font-size: 30px;
+  color: gray;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #bfbfbf;
+`;
+
 export const MapWrap = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const EmptyMapWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const EmptyMap = styled.img`
+  width: 100%;
+  height: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
