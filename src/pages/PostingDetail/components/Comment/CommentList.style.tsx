@@ -5,7 +5,7 @@ export const CommentsAllWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 70%;
-  height: 622px;
+  max-height: 955px;
   padding: 10px;
 `;
 
@@ -112,5 +112,5 @@ export const EmptyCommentWrap = styled.div`
 export const EmptyCommentList = styled.img`
   width: 100%;
   height: 100%;
-  margin-top: 133px;
+  margin-top: 59px;
 `;
