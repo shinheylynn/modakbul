@@ -34,14 +34,14 @@ export const UserInfoWrap = styled.div`
 `;
 
 export const SliderItem = styled.div`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 955px;
 `;
 
 export const PostingImg = styled.img`
   width: 100%;
-  height: 100%;
-  padding-bottom: 20px;
+  height: 607px;
+  padding: 20px;
 `;
 
 export const UserInfo = styled.div`
@@ -75,13 +75,12 @@ export const Like = styled(Scrape)`
 export const PostingWrap = styled.div`
   display: flex;
   flex-direction: row;
-  //overflow: scroll;
+  max-height: 1000px;
 `;
 
 export const PostingImgWrap = styled.div`
   width: 60%;
   height: 100%;
-  margin-right: 10px;
 `;
 
 export const TextAndMapWrap = styled.div`

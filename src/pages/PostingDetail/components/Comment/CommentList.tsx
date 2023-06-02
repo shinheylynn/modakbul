@@ -27,16 +27,24 @@ interface CommentsData {
   commentUserProfileImage: string;
 }
 
-interface CommentListProps {
-  postingData: PostingData[];
+interface LoginUser {
+  loginUserId: number;
+  loginUserName: string;
+  loginUserProfileImage: string;
 }
 
-export default function CommentsList({ postingData }: CommentListProps) {
-  const [comment, setComment] = useState('');
-  const [commentData, setCommentData] = useState([{}]);
-  const [commentsData, setCommentsData] = useState<CommentsData[]>([]);
+interface CommentListProps {
+  postingData: PostingData[];
+  loginUser: LoginUser[];
+}
 
-  console.log(commentsData);
+export default function CommentsList({
+  postingData,
+  loginUser,
+}: CommentListProps) {
+  const [comment, setComment] = useState('');
+  const [commentsData, setCommentsData] = useState<CommentsData[]>([]);
+  const [noMoreComment, setNoMoreComment] = useState(true); // 플래그: 더 이상 데이터가 없는지 여부
 
   const getComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
@@ -45,15 +53,15 @@ export default function CommentsList({ postingData }: CommentListProps) {
   const navigate = useNavigate();
 
   const currentDateTime = new Date().toISOString();
-
-  const token = localStorage.getItem('access_token');
-
   const addComment = () => {
+    const maxCommentId = Math.max(
+      ...commentsData.map(comment => comment.commentId)
+    );
     fetch(`${API.POSTING_COMMENTS}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token || '',
+        Authorization: localStorage.getItem('access_token') || '',
       },
       body: JSON.stringify({
         content: comment,
@@ -62,45 +70,29 @@ export default function CommentsList({ postingData }: CommentListProps) {
     })
       .then(res => res.json())
       .then(res => {
-        if (comment === '') {
-          return alert('댓글을 입력 해 주세요');
-        } else if (!token) {
+        if (res.message === 'COMMENT UPLOAD SUCCESS!') {
+          const newComment = {
+            commentContent: comment,
+            commentCreateTime: currentDateTime,
+            commentId: maxCommentId + 1,
+            commentUserId: postingData[0].postId,
+            commentUserName: loginUser[0].loginUserName,
+            commentUserProfileImage: loginUser[0].loginUserProfileImage,
+          };
+          setCommentsData([newComment, ...commentsData]);
+          setComment('');
+        } else if (comment === '') {
+          alert('댓글을 입력 해 주세요');
+        } else if (!localStorage.getItem('access_token')) {
           alert('로그인이 필요합니다.');
           navigate('/login');
+        } else {
+          console.log('error');
         }
-
-        const newComment = {
-          commentContent: comment,
-          commentCreateTime: currentDateTime,
-          commentId: commentData.length + 1,
-          commentUserId: postingData[0].postId,
-          commentUserName: postingData[0].userName,
-          commentUserProfileImage: postingData[0].userProfileImage,
-          // 로그인한 user의 프로필 이미지로 변경해야 함
-        };
-        setCommentsData([newComment, ...commentsData]);
-        setComment('');
       });
   };
 
   const params = useParams();
-
-  //**첫 렌더링시 8개씩 끊어서 불러오게 수정해야 함**//
-  // useEffect(() => {
-  //   fetch(`${API.GET_POSTING_COMMENTS}/${params.id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: localStorage.getItem('access_token') || '',
-  //     },
-  //   })
-  //     .then(res => {
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       setCommentsData(data.feedComment);
-  //     });
-  // }, [params.id]);
 
   const observerRef = useRef<HTMLDivElement>(null);
 
@@ -128,14 +120,16 @@ export default function CommentsList({ postingData }: CommentListProps) {
         observer.unobserve(observerRef.current);
       }
     };
-  }, []);
+  }, [commentsData]);
 
   const loadMoreComments = () => {
-    const startIndex = commentsData.length;
-    const endIndex = startIndex + 8;
+    if (!noMoreComment) {
+      return; // 더 이상 데이터가 없으면 중지
+    }
 
-    // 서버에서 startIndex부터 endIndex까지의 댓글 데이터를 불러오는 API 요청을 보내고,
-    // 응답으로 받은 데이터를 commentsData에 추가
+    const startIndex = commentsData.length; // 현재 commentsData의 길이를 가져옵니다.
+    const endIndex = startIndex + 12; // 가져올 댓글의 끝 인덱스를 계산합니다.
+
     fetch(
       `${API.GET_POSTING_COMMENTS}/${params.id}?startIndex=${startIndex}&endIndex=${endIndex}`,
       {
@@ -148,7 +142,11 @@ export default function CommentsList({ postingData }: CommentListProps) {
     )
       .then(res => res.json())
       .then(data => {
-        setCommentsData([...commentsData, ...data.feedComment]);
+        if (data.feedComment.length === 0) {
+          setNoMoreComment(false); // 더 이상 데이터가 없음을 표시
+        } else {
+          setCommentsData([...commentsData, ...data.feedComment]);
+        } // 새로운 댓글을 기존의 commentsData에 추가합니다.
       });
   };
 
@@ -161,9 +159,9 @@ export default function CommentsList({ postingData }: CommentListProps) {
               {commentsData.length > 0 ? (
                 <Comments
                   commentsData={commentsData}
-                  token={token}
                   setCommentsData={setCommentsData}
                   postingData={postingData}
+                  loginUser={loginUser}
                 />
               ) : (
                 <S.EmptyCommentWrap>
@@ -191,8 +189,14 @@ export default function CommentsList({ postingData }: CommentListProps) {
           </S.CountingWrap>
         </div>
         <S.InputWrap>
-          <S.UserImg src={postingData[0].userProfileImage} alt="userImg" />
-          {/* 로그인한 user의 img로 변경해야 함 */}
+          <S.UserImg
+            src={
+              localStorage.getItem('access_token')
+                ? loginUser[0].loginUserProfileImage
+                : '/images/postingDetail/user.png'
+            }
+            alt="userImg"
+          />
           <S.CommentInputWrap>
             <S.CommentInput
               placeholder=" 캠핑을 소통해봐요!"

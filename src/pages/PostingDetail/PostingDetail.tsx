@@ -21,12 +21,19 @@ interface PostingData {
   userProfileImage: string;
 }
 
+interface LoginUser {
+  loginUserId: number;
+  loginUserName: string;
+  loginUserProfileImage: string;
+}
+
 interface CommentListProps {
   postingData: PostingData[]; // 타입 변경: PostingData[]
 }
 
 export default function PostingDetail() {
   const [postingData, setPostingData] = useState<PostingData[]>([]);
+  const [loginUser, setLoginUser] = useState<LoginUser[]>([]);
 
   const [scrapBtn, setScrapBtn] = useState(
     postingData.length > 0 ? postingData[0].userFeedScrap : false
@@ -154,22 +161,37 @@ export default function PostingDetail() {
       })
       .then(data => {
         const fetchedPostingData = data.feedDetail;
+        const loginUserImg = data.loginUser;
         if (fetchedPostingData.length > 0) {
           setLikeBtn(fetchedPostingData[0].userFeedLike);
           setScrapBtn(fetchedPostingData[0].userFeedScrap);
           setPostingData(fetchedPostingData);
+          setLoginUser(loginUserImg);
         }
       });
   }, [params.id]);
+
+  // HTML을 파싱하여 텍스트만 추출하는 함수
+  function extractTextFromHTML(html: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  }
+
+  // 백엔드에서 받아온 데이터에서 HTML 태그를 제거하고 텍스트만 추출
+  const textWithoutTags =
+    postingData.length > 0
+      ? extractTextFromHTML(postingData[0].feedContent)
+      : '';
 
   return (
     <S.AllWrap>
       {postingData.length > 0 && (
         <>
-          <S.ThumbnailImg
+          {/* <S.ThumbnailImg
             src={postingData[0].feedImages[0].imageUrl}
             alt="thumbnailImg"
-          />
+          /> */}
           <S.TitleWrap>
             <S.Title>{postingData[0].feedTitle}</S.Title>
             <S.SubTitleWrap>
@@ -213,13 +235,13 @@ export default function PostingDetail() {
                       ))}
                   </Slick>
                 </S.PostingImgWrap>
-                <CommentsList postingData={postingData} />
+                <CommentsList postingData={postingData} loginUser={loginUser} />
               </S.PostingWrap>
             </S.SubTitleWrap>
           </S.TitleWrap>
           <S.TextAndMapWrap>
             <S.MainTextWrap>
-              <S.MainText>{postingData[0].feedContent}</S.MainText>
+              <S.MainText>{textWithoutTags}</S.MainText>
             </S.MainTextWrap>
             <S.MapWrap>
               <Map />

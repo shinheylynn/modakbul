@@ -1,6 +1,7 @@
 import * as S from './Comments.style';
 import API from '../../../../config/config';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface CommentsData {
   commentContent: string;
@@ -25,17 +26,23 @@ interface PostingData {
   userProfileImage: string;
 }
 
+interface LoginUser {
+  loginUserId: number;
+  loginUserName: string;
+  loginUserProfileImage: string;
+}
+
 interface CommentsProps {
   commentsData: CommentsData[];
-  token: string | null;
   setCommentsData: (commentsData: CommentsData[]) => void;
   postingData: PostingData[];
+  loginUser: LoginUser[];
 }
 
 export default function Comment({
   commentsData,
-  token,
   postingData,
+  loginUser,
   setCommentsData,
 }: CommentsProps) {
   const detailDate = (a: Date) => {
@@ -63,27 +70,30 @@ export default function Comment({
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token || '',
+        Authorization: localStorage.getItem('access_token') || '',
       },
       body: JSON.stringify({
         commentId: id,
+        // commentId를 commentCreateTime으로 수정이 가능한지 백엔드쪽에 확인 필요
       }),
     })
       .then(res => res.json())
       .then(res => {
-        if (res.status === 200) {
+        if (res.message === 'COMMENT IS DELETED') {
           setCommentsData(
             commentsData.filter(comment => comment.commentId !== id)
           );
-        } else if (!token === undefined) {
+        } else if (!localStorage.getItem('access_token') === undefined) {
           alert('로그인이 필요합니다.');
           navigate('/login');
+        } else {
+          console.log('error');
         }
       });
   };
 
   //**FIX comment delete function**//
-  // const removeComment = (id: number) => {
+  // const deleteComment = (id: number) => {
   //   const removeComment = commentsData.filter(
   //     comment => comment.commentId !== id
   //   );
@@ -109,12 +119,14 @@ export default function Comment({
                 />
                 {/* 버튼이 눌린 후 하트이미지와 좋아요수 출력되게 분기처리해야함 */}
                 <S.replyComment>답글달기</S.replyComment>
-                {postingData[0].postId === comment.commentUserId ? (
-                  <S.DeleteComment
-                    onClick={() => deleteComment(comment.commentId)}
-                  >
-                    삭제
-                  </S.DeleteComment>
+                {localStorage.getItem('access_token') ? (
+                  loginUser[0].loginUserName === comment.commentUserName ? (
+                    <S.DeleteComment
+                      onClick={() => deleteComment(comment.commentId)}
+                    >
+                      삭제
+                    </S.DeleteComment>
+                  ) : null
                 ) : null}
               </S.CommentInfoWrap>
             </S.CommentTextWrap>
