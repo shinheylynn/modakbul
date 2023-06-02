@@ -7,11 +7,18 @@ import API from '../../config/config';
 import * as S from './Posting.style';
 
 export default function Posting() {
-  const navigate = useNavigate();
   const [formContents, setFormContents] = useState({
     title: '',
     contents: '',
   });
+  const [markerPosition, setMarkerPosition] = useState({ x: 0, y: 0 });
+  const [showImages, setShowImages] = useState<string[]>([]);
+  const [imageLists, setImageLists] = useState<File[]>([]);
+
+  const navigate = useNavigate();
+
+  const latitude = markerPosition.y;
+  const longitude = markerPosition.x;
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormContents(prev => ({ ...prev, title: e.target.value }));
@@ -20,10 +27,6 @@ export default function Posting() {
   const handleContents = (value: string) => {
     setFormContents(prev => ({ ...prev, contents: value }));
   };
-
-  const [showImages, setShowImages] = useState<string[]>([]);
-  const [imageLists, setImageLists] = useState<File[]>([]);
-
   const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList: FileList | null = e.target.files;
     let imageUrlLists: string[] = [...showImages];
@@ -59,6 +62,8 @@ export default function Posting() {
         userId: '1',
         title: formContents.title,
         content: formContents.contents,
+        x: longitude,
+        y: latitude,
       })
     );
     if (imageLists !== null) {
@@ -109,7 +114,7 @@ export default function Posting() {
         setShowImages={setShowImages}
         handleImages={handleImages}
       />
-      {/* <NaverMap /> */}
+      <NaverMap setMarkerPosition={setMarkerPosition} />
       <form onSubmit={onSubmit}>
         <S.SubmitBtn type="submit">
           <span>⬆️ 업로드</span>
