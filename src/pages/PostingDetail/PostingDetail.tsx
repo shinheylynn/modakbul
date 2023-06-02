@@ -19,16 +19,14 @@ interface PostingData {
   userFeedScrap: boolean;
   userName: string;
   userProfileImage: string;
+  x: string;
+  y: string;
 }
 
 interface LoginUser {
   loginUserId: number;
   loginUserName: string;
   loginUserProfileImage: string;
-}
-
-interface CommentListProps {
-  postingData: PostingData[]; // 타입 변경: PostingData[]
 }
 
 export default function PostingDetail() {
@@ -243,8 +241,16 @@ export default function PostingDetail() {
             <S.MainTextWrap>
               <S.MainText>{textWithoutTags}</S.MainText>
             </S.MainTextWrap>
+            <S.Place>🏕️캠핑장소</S.Place>
             <S.MapWrap>
-              <Map />
+              {!(postingData[0].x === null && postingData[0].y === null) ? (
+                <Map postingData={postingData} />
+              ) : (
+                <S.EmptyMapWrap>
+                  <S.EmptyMap src="/images/postingDetail/tent.png" alt="tent" />
+                  <div>캠핑장소는 비공개 입니다.</div>
+                </S.EmptyMapWrap>
+              )}
             </S.MapWrap>
           </S.TextAndMapWrap>
         </>
