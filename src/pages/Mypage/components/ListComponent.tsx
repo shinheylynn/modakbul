@@ -21,7 +21,7 @@ export default function ListComponent({ data, emptyInfo }: ListComponentProps) {
   return (
     <S.MyPosting>
       {data.length === 0 ? (
-        <Link to="/posting">
+        <Link to={emptyInfo.id === 1 ? '/posting' : '/'}>
           <S.EmptyWrap>
             <S.EmptyList src={emptyInfo.emptyImg} alt="emptyList" />
             <S.AddPosting>{emptyInfo.emptyText}</S.AddPosting>
@@ -30,7 +30,9 @@ export default function ListComponent({ data, emptyInfo }: ListComponentProps) {
       ) : (
         <S.ThumbnailWrapper>
           {data.map((posting: PostImage, id: number) => (
-            <S.Thumbnail key={id} src={posting.postImage} alt="Thumbnail" />
+            <Link key={id} to={`/postingdetail/${posting.postId}`}>
+              <S.Thumbnail src={posting.postImage} alt="Thumbnail" />
+            </Link>
           ))}
         </S.ThumbnailWrapper>
       )}
