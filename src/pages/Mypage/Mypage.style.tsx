@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Allwrap = styled.div`
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 94%;
   height: 100%;
-  padding: 0px 60px;
 `;
 
 export const MypageNavWrap = styled.div`
@@ -80,7 +81,6 @@ export const ScrapeWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //margin-right: 5px;
 `;
 
 export const ImgBtn = styled.img`
@@ -92,8 +92,6 @@ export const ImgBtn = styled.img`
 export const Title = styled.p`
   margin-bottom: 5px;
 `;
-
-export const Count = styled.p``;
 
 export const LikeWrap = styled(ScrapeWrap)``;
 
@@ -110,6 +108,10 @@ export const PostingTitle = styled.span`
   font-weight: 500;
 `;
 
+export const ListWrap = styled.div`
+  width: 100%;
+`;
+
 export const PostingTitleWrap = styled.div`
   margin-bottom: 10px;
 `;
@@ -117,53 +119,3 @@ export const PostingTitleWrap = styled.div`
 export const CountPosting = styled(PostingTitle)`
   margin-left: 5px;
 `;
-
-// export const MyPosting = styled.div`
-//   width: 150%;
-//   height: 47.5%;
-//   //width: 400px;
-//   overflow: auto;
-//   border: 1px solid #847a7a58; //** 레이아웃 작업 완료시 삭제 **/
-//   border-radius: 4px;
-//   padding: 10px;
-//   ::-webkit-scrollbar {
-//     display: none; /* Chrome, Safari, Opera*/
-//   }
-// `;
-
-// export const EmptyWrap = styled.div`
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   cursor: pointer;
-// `;
-
-// export const EmptyList = styled.img`
-//   width: 25%;
-//   margin-bottom: 20px;
-// `;
-
-// export const AddPosting = styled.p`
-//   font-size: 15px;
-//   font-weight: 500;
-//   text-align: center;
-//   position: absolute;
-//   bottom: 45%;
-//   right: 42%;
-//   color: black;
-// `;
-
-// export const ThumbnailWrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-gap: 10px;
-//   justify-items: center;
-// `;
-
-// export const Thumbnail = styled.img`
-//   width: 200px;
-//   /* border: 1px solid #b1b1b159; */
-//   border-radius: 4px;
-//   padding: 10px;
-// `;

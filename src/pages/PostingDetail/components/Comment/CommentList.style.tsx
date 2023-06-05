@@ -27,6 +27,7 @@ export const CountScrap = styled(CountLike)``;
 export const CommentsWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   overflow: auto;
   height: 100%;
 `;
@@ -110,7 +111,5 @@ export const EmptyCommentWrap = styled.div`
 `;
 
 export const EmptyCommentList = styled.img`
-  width: 100%;
-  height: 78%;
-  margin-top: 56px;
+  width: 70%;
 `;
