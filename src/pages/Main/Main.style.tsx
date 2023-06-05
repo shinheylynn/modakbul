@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  width: 100vw;
+  width: 100%;
 `;
 
 export const TitleBox = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;

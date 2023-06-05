@@ -4,7 +4,7 @@ export const NavContainer = styled.div`
   display: flex;
   height: 8vh;
   height: 70px;
-  width: 100vw;
+  width: 100%;
 `;
 
 export const LogoBox = styled.div`

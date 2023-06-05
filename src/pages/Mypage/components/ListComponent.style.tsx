@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const MyPosting = styled.div`
   width: 120%;
-  height: 27.5%;
+  height: 375px;
   margin-bottom: 20px;
-  //width: 400px;
   overflow: auto;
-  border: 1px solid #847a7a58; //** 레이아웃 작업 완료시 삭제 **/
+  border: 1px solid #847a7a58;
   border-radius: 4px;
   padding: 10px;
   ::-webkit-scrollbar {
@@ -19,11 +18,12 @@ export const EmptyWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: 61px;
   cursor: pointer;
 `;
 
 export const EmptyList = styled.img`
-  width: 25%;
+  width: 30%;
   margin-bottom: 20px;
 `;
 
@@ -33,7 +33,7 @@ export const AddPosting = styled.span`
   text-align: center;
   position: absolute;
   bottom: 45%;
-  right: 42%;
+  right: 44%;
   color: black;
   white-space: pre-wrap;
 `;

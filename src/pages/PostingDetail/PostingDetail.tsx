@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 interface PostingData {
   feedContent: string;
   feedCreateTime: string;
+  feedCommentCount: string;
   feedImages: { imageId: number; imageUrl: string }[];
   feedLikeCount: string;
   feedScrapCount: string;

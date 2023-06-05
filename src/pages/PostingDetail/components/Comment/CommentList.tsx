@@ -7,6 +7,7 @@ import * as S from './CommentList.style';
 interface PostingData {
   feedContent: string;
   feedCreateTime: string;
+  feedCommentCount: string;
   feedImages: { imageId: number; imageUrl: string }[];
   feedLikeCount: string;
   feedScrapCount: string;
@@ -50,6 +51,7 @@ export default function CommentsList({
     setComment(e.target.value);
   };
 
+  console.log(postingData);
   const navigate = useNavigate();
 
   const currentDateTime = new Date().toISOString();
@@ -179,7 +181,9 @@ export default function CommentsList({
       <S.CommentItemWrap>
         <div>
           <S.CountingWrap>
-            <S.CountContents>댓글 {commentsData.length}</S.CountContents>
+            <S.CountContents>
+              댓글 {postingData[0].feedCommentCount}
+            </S.CountContents>
             <S.CountContents>
               좋아요 {postingData[0].feedLikeCount}
             </S.CountContents>
