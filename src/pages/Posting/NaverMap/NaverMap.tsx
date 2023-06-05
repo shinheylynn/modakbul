@@ -56,5 +56,21 @@ export default function NaverMap({ setMarkerPosition }: Props) {
     );
   }, []);
 
-  return <S.Map ref={mapElement} />;
+  return (
+    <S.MapContainer>
+      <S.MapLegendWrapper>
+        <S.MapLegend>Map</S.MapLegend>
+      </S.MapLegendWrapper>
+      <S.InfoWrapper>
+        <S.MapInfo>
+          경험을 공유하실 장소를 클릭해서 핀으로 찍어주세요!
+        </S.MapInfo>
+        <S.MapSubInfo>
+          지도를 누른 채로 마우스를 스크롤하시면 지도 이동이 가능합니다.
+        </S.MapSubInfo>
+      </S.InfoWrapper>
+
+      <S.Map ref={mapElement} />
+    </S.MapContainer>
+  );
 }
