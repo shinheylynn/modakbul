@@ -51,7 +51,6 @@ export default function CommentsList({
     setComment(e.target.value);
   };
 
-  console.log(postingData);
   const navigate = useNavigate();
 
   const currentDateTime = new Date().toISOString();

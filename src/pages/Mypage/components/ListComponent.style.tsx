@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const MyPosting = styled.div`
-  width: 120%;
+  width: 101%;
   height: 375px;
   margin-bottom: 20px;
   overflow: auto;
   border: 1px solid #847a7a58;
   border-radius: 4px;
   padding: 10px;
-  ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
 `;
 
 export const EmptyWrap = styled.div`
@@ -48,7 +45,6 @@ export const ThumbnailWrapper = styled.div`
 export const Thumbnail = styled.img`
   width: 200px;
   height: 168px;
-  /* border: 1px solid #b1b1b159; */
   border-radius: 10px;
   padding: 10px;
 `;

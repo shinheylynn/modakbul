@@ -79,16 +79,12 @@ export default function Mypage() {
               <S.ScrapeWrap>
                 <S.ImgBtn src="images/mypage/bookmark.png" alt="scrapeBtn" />
                 <S.Title>스크랩</S.Title>
-                <S.Count>
-                  {data && data.scrapImage ? data.scrapImage.length : 0}
-                </S.Count>
+                <p>{data && data.scrapImage ? data.scrapImage.length : 0}</p>
               </S.ScrapeWrap>
               <S.LikeWrap>
                 <S.ImgBtn src="images/mypage/heart.png" alt="likeBtn" />
                 <S.Title>좋아요</S.Title>
-                <S.Count>
-                  {data && data.likeImage ? data.likeImage.length : 0}
-                </S.Count>
+                <p>{data && data.likeImage ? data.likeImage.length : 0}</p>
               </S.LikeWrap>
             </S.CountScrapeAndLikeWrap>
           </S.UserInfoWrap>
@@ -106,13 +102,13 @@ export default function Mypage() {
             const emptyInfo = getEmptyListInfo(title);
 
             return (
-              <>
+              <S.ListWrap key={id}>
                 <S.PostingTitleWrap>
-                  <S.PostingTitle key={id}>{title}</S.PostingTitle>
+                  <S.PostingTitle>{title}</S.PostingTitle>
                   <S.CountPosting>{postingData.length}</S.CountPosting>
                 </S.PostingTitleWrap>
                 <ListComponent data={postingData} emptyInfo={emptyInfo} />
-              </>
+              </S.ListWrap>
             );
           })}
         </S.PostingWrap>
