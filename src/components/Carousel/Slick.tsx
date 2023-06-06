@@ -103,7 +103,7 @@ const Div = styled.div`
   width: 30px;
   height: 30px;
   position: absolute;
-  right: 16px;
+  right: 25px;
   z-index: 99;
   text-align: right;
   line-height: 30px;
@@ -115,7 +115,7 @@ const DivPre = styled.div`
   width: 30px;
   height: 30px;
   position: absolute;
-  left: 16px;
+  left: 25px;
   z-index: 99;
   text-align: left;
   line-height: 30px;

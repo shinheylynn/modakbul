@@ -91,6 +91,7 @@ export const CommentBtn = styled.button`
 
 export const CommentWrap = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 export const UsersImgWrap = styled.div`

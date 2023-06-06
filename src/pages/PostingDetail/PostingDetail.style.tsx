@@ -42,6 +42,7 @@ export const PostingImg = styled.img`
   width: 100%;
   height: 646px;
   padding: 20px;
+  margin-bottom: 10px;
 `;
 
 export const UserInfo = styled.div`
@@ -96,7 +97,10 @@ export const MainTextWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-export const MainText = styled.div``;
+export const MainText = styled.div`
+  margin-bottom: 20px;
+  line-height: initial;
+`;
 
 export const Place = styled.h1`
   font-size: 30px;

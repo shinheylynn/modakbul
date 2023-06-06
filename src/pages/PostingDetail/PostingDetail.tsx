@@ -170,19 +170,6 @@ export default function PostingDetail() {
       });
   }, [params.id]);
 
-  // HTML을 파싱하여 텍스트만 추출하는 함수
-  function extractTextFromHTML(html: string) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    return doc.body.textContent || '';
-  }
-
-  // 백엔드에서 받아온 데이터에서 HTML 태그를 제거하고 텍스트만 추출
-  const textWithoutTags =
-    postingData.length > 0
-      ? extractTextFromHTML(postingData[0].feedContent)
-      : '';
-
   return (
     <S.AllWrap>
       {postingData.length > 0 && (
@@ -236,11 +223,17 @@ export default function PostingDetail() {
           </S.TitleWrap>
           <S.TextAndMapWrap>
             <S.MainTextWrap>
-              <S.MainText>{textWithoutTags}</S.MainText>
+              <S.MainText
+                dangerouslySetInnerHTML={{ __html: postingData[0].feedContent }}
+              />
             </S.MainTextWrap>
             <S.Place>🏕️캠핑장소</S.Place>
             <S.MapWrap>
-              {!(postingData[0].x === null && postingData[0].y === null) ? (
+              {!(
+                (postingData[0].x === '0.00000000000000' &&
+                  postingData[0].y === '0.00000000000000') ||
+                (postingData[0].x === null && postingData[0].y === null)
+              ) ? (
                 <Map postingData={postingData} />
               ) : (
                 <S.EmptyMapWrap>
