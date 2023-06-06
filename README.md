@@ -81,6 +81,7 @@ https://github.com/shinheylynn/modakbul/assets/120013855/f4b12fa9-e8f9-4305-a1bb
 ❗️구현사항
 - 소셜로그인 기능을 구현하였으며 구글로그인 API를 이용하여 진행하였습니다.
 - 구글로그인 구현시 ```@react-oauth/google``` 라이브러리를 사용하여 구현하였습니다.
+- 구글로그인 버튼을 커스터마이징 하여 구현하였습니다. 
 - 구글로그인을 통해 받은 token을 백엔드로 POST하여 token형식으로 jwt 로그인 방식으로 구현하였습니다. 
 
 
