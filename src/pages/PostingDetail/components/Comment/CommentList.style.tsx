@@ -4,7 +4,7 @@ export const CommentsAllWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
+  width: 45%;
   max-height: 646px;
   padding: 10px;
 `;
@@ -26,7 +26,6 @@ export const CountScrap = styled(CountLike)``;
 
 export const CommentsWrap = styled.div`
   display: flex;
-  flex-direction: column;
   overflow: auto;
   height: 100%;
 `;
