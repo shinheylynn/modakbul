@@ -45,6 +45,6 @@ export const ThumbnailWrapper = styled.div`
 export const Thumbnail = styled.img`
   width: 200px;
   height: 168px;
-  border-radius: 10px;
+  border-radius: 25px;
   padding: 10px;
 `;
