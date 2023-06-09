@@ -13,6 +13,7 @@ export default function NaverMap({ setMarkerPosition }: Props) {
   useEffect(() => {
     const { naver } = window;
     if (!naver) return;
+    // Naver 지도 API를 로드하지 못한 경우 해당 함수의 실행을 중지하고 종료함으로서 에러방지
 
     // 현재 위치 가져오기
     navigator.geolocation.getCurrentPosition(
@@ -48,6 +49,7 @@ export default function NaverMap({ setMarkerPosition }: Props) {
           }
 
           setMarkerPosition(clickedLocation);
+          // state 값으로 관리되고 있는 위도, 경도값이 클릭이벤트 작동시 변경
         });
       },
       error => {
