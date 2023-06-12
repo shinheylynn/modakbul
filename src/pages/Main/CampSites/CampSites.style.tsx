@@ -15,7 +15,7 @@ export const Post = styled.div`
   flex-direction: column;
   justify-content: center;
   border-radius: 10px;
-  height: 350px;
+  height: 400px;
   &:hover {
     cursor: pointer;
     transition: 0.3s;
@@ -31,7 +31,7 @@ export const PostImgBox = styled.div`
 `;
 
 export const PostImg = styled.img`
-  height: 290px;
+  height: 300px;
   object-fit: cover;
   border-radius: 10px;
   width: 100%;
@@ -40,8 +40,6 @@ export const PostImg = styled.img`
 export const PostTitleBox = styled.div`
   height: 25px;
   display: flex;
-  align-items: center;
-  width: 80%;
 `;
 
 export const PostTitle = styled.div`
@@ -55,7 +53,8 @@ export const PostWriterProfileWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 30px;
   gap: 5px;
 `;
 
