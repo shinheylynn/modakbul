@@ -86,8 +86,29 @@ https://github.com/shinheylynn/modakbul/assets/120013855/f4b12fa9-e8f9-4305-a1bb
 
 
 ### `feature/nav` - 혜린님🌴
+❗️영상
+
+https://github.com/shinheylynn/modakbul/assets/84219519/166767a2-a2ff-4901-becf-ddf8bf9089a1
+
+❗️구현사항
+- 로그인이 되었을 때와 로그아웃 되었을 때의 UI가 다르도록 구현했습니다.
+  - 로그인이 되었을 시에만 `mypage` 및 `posting` 페이지로 넘어갈 수 있는 버튼 표시
+  - 로그인을 한 유저만 마이페이지 및 게시글 작성 페이지에 접근할 수 있도록 하기 위함
+- nav의 메뉴는 `map`, `campsites`, `about` 세 가지로, `map`은 추후에 추가될 기능입니다. (현재 사용X) `campsites` 메뉴가 메인화면으로 유저들의 게시글을 표시하는 메뉴입니다. `about`은 홈페이지에 대한 간단소개글을 작성한 곳입니다.
+- 좌측 `modakbul` 로고를 클릭하면 메인화면으로 넘어가도록 구현했습니다. 
 
 ### `feature/main` - 혜린님🌴
+❗️영상
+
+
+https://github.com/shinheylynn/modakbul/assets/84219519/5d5b8bb7-6e32-4df5-861b-cf791821c1b0
+
+❗️구현사항
+- 메인페이지의 `campsites` 메뉴가 홈페이지 메인 메뉴로, 유저들이 작성한 게시글의 정보가 대표 사진 한장과 제목 및 유저명을 표시하므로써 필수 정보를 한눈에 파악할 수 있도록 했습니다.
+- 해당 게시글의 좋아요 수, 스크랩 수, 그리고 댓글 수를 표시하므로써 각각 게시글의 인기도를 나타내고자 하였습니다.
+  - 이를 통해 유저들로 하여금 게시글 내용에 대한 궁금증을 유발시켜 클릭을 유도할 수 있도록 하기 위함입니다.
+- 게시글
+
 
 ### `feature/posting` - 혜린님🌴
 
