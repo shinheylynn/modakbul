@@ -25,7 +25,7 @@ TwoPlusOne 팀의 첫 토이 프로젝트이자, 자연과 소통하는 캠핑 �
 
 ### ERD
 
-_(ERD 삽입)_
+<img width="948" alt="modakbul_ERD" src="https://github.com/shinheylynn/modakbul/assets/84219519/b0bd6cdf-fad7-4a84-952d-13f7d86f1769">
 
 <br/>
 
@@ -48,7 +48,7 @@ _(ERD 삽입)_
 
 <br/>
 
-### BE <a href=""><img src="https://img.shields.io/badge/BackEnd Repo-181717?style=flat-square&logo=GitHub&logoColor=white&link="/></a> _(Repo 주소 추가 필요)_
+### BE <a href="https://github.com/Indobobusang/modakbul-backend"><img src="https://img.shields.io/badge/BackEnd Repo-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/Indobobusang/modakbul-backend"/></a>
 
 |                                                                          TypeScript                                                                           |                                                Nodejs                                                 |                                                 MySql                                                 |                                                  Rest                                                   |                                                 jest                                                 |
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
